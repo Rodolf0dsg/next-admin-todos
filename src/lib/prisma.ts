@@ -1,5 +1,5 @@
-console.log('PrismaClient is being initialized');
-import { PrismaClient } from '@prisma/client';
+
+import { PrismaClient } from '../generated/prisma/client';
 
 let prisma: PrismaClient;
 
