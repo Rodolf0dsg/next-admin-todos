@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -16,8 +10,16 @@ datasource db {
 
 model Todo {
   id          String   @id @default(uuid())
-  description String 
+  description String
   complete    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model employee {
+  id        Int      @id(map: "employees_pkey") @default(autoincrement())
+  name      String   @db.VarChar
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  roles     String[] @default([])
 }

@@ -60,3 +60,25 @@ export async function PUT(request: Request) {
     message: 'Hello World'
   }), { status: 200 } );
 };
+
+export async function DELETE(request: Request) { 
+
+  try {
+
+    await prisma.todo.deleteMany({
+      where: {
+        complete: true,
+      }
+    });
+
+    return new Response(JSON.stringify({
+    message: 'Deleted'
+  }), { status: 200 } );
+
+  } catch (error) {
+    return new Response(JSON.stringify({
+      message: error
+    }), { status: 400 } );
+  }
+
+}
